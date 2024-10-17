@@ -41,7 +41,6 @@ async function sendMessage(message, buttontext, buttonurl) {
 
 router.post("/webhook", (req, res) => {
   let data = req.body;
-  console.log(data)
   if (data.type === "DEPLOY" && data.status === "SUCCESS") {
     sendMessage(
       `<b>Deployment: ${data.deployment.meta.repo}</b>\n\✅ Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.meta.commitAuthor}</code>`,
