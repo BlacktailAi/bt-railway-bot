@@ -1,5 +1,5 @@
 {
-  "name": "railway-to-tg",
+  "name": "bt-railway-bot",
   "packageManager": "yarn@3.2.0",
   "version": "0.1.0",
   "description": "Integrate your Railway Projects events with Telegram Channel/Group using Railway Webhooks!",

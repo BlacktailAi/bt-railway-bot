@@ -41,27 +41,34 @@ async function sendMessage(message, buttontext, buttonurl) {
 
 router.post("/webhook", (req, res) => {
   let data = req.body;
+  console.log(data)
   if (data.type === "DEPLOY" && data.status === "SUCCESS") {
     sendMessage(
-      `<b>Deployment: ${data.project.name}</b>\n\✅ Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.creator.name}</code>`,
+      `<b>Deployment: ${data.deployment.meta.repo}</b>\n\✅ Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.meta.commitAuthor}</code>`,
       "View Deployment",
       `https://railway.app/project/${data.project.id}/`
     );
   } else if (data.type === "DEPLOY" && data.status === "BUILDING") {
     sendMessage(
-      `<b>Deployment: ${data.project.name}</b>\n\⚒️ Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.creator.name}</code>`,
+      `<b>Deployment: ${data.deployment.meta.repo}</b>\n\⚒️ Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.meta.commitAuthor}</code>`,
       "View Deployment",
       `https://railway.app/project/${data.project.id}/`
     );
   } else if (data.type === "DEPLOY" && data.status === "DEPLOYING") {
     sendMessage(
-      `<b>Deployment: ${data.project.name}</b>\n\🚀 Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.creator.name}</code>`,
+      `<b>Deployment: ${data.deployment.meta.repo}</b>\n\🚀 Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.meta.commitAuthor}</code>`,
       "View Deployment",
       `https://railway.app/project/${data.project.id}/`
     );
   } else if (data.type === "DEPLOY" && data.status === "CRASHED") {
     sendMessage(
-      `<b>Deployment: ${data.project.name}</b>\n\❌ Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.creator.name}</code>`,
+      `<b>Deployment: ${data.deployment.meta.repo}</b>\n\❌ Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.meta.commitAuthor}</code>`,
+      "View Deployment",
+      `https://railway.app/project/${data.project.id}/`
+    );
+  } else if (data.type === "DEPLOY" && data.status === "NEEDS_APPROVAL") {
+    sendMessage(
+      `<b>Deployment: ${data.deployment.meta.repo}</b>\n⌛️ Status: <code>${data.status}</code>\n🌳 Environment: <code>${data.environment.name}</code>\n👨‍💻 Creator: <code>${data.deployment.meta.commitAuthor}</code>`,
       "View Deployment",
       `https://railway.app/project/${data.project.id}/`
     );
